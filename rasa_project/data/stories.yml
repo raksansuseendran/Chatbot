@@ -1,0 +1,41 @@
+version: "3.1"
+  
+stories:
+  - story: happy path
+    steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: perform_mathematical_operation
+    - action: math_operation_form
+    - active_loop: math_operation_form
+    - slot_was_set:
+      - requested_slot: null
+    - action: action_display_result
+  - story: unhappy path
+    steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: perform_mathematical_operation
+    - action: math_operation_form
+    - active_loop: math_operation_form
+    - slot_was_set:
+      - requested_slot: null
+    - action: action_display_result
+    - intent: more_operations
+    - action: math_operation_form
+    - active_loop: math_operation_form
+    - slot_was_set:
+      - requested_slot: null
+    - action: action_display_result
+  - story: restart conversation
+    steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: perform_mathematical_operation
+    - action: math_operation_form
+    - active_loop: math_operation_form
+    - slot_was_set:
+      - requested_slot: null
+    - action: action_display_result
+    - intent: restart
+    - action: action_restart

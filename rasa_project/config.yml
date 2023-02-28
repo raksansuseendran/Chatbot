@@ -1,0 +1,18 @@
+# Configuration for Rasa NLU.
+# https://rasa.com/docs/rasa/nlu/components/
+language: en
+pipeline:
+  - name: WhitespaceTokenizer
+  - name: RegexFeaturizer
+  - name: CRFEntityExtractor
+  - name: CountVectorsFeaturizer
+  - name: EmbeddingIntentClassifier
+    epochs: 20
+
+# Configuration for Rasa Core.
+# https://rasa.com/docs/rasa/core/policies/
+policies:
+  - name: MemoizationPolicy
+  - name: TEDPolicy
+    epochs: 100
+  - name: MappingPolicy

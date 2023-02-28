@@ -1,0 +1,16 @@
+version: "3.1"
+
+rules:
+  - rule: show available operations
+    steps:
+    - intent: greet
+    - action: utter_available_operations
+  - rule: perform mathematical operation
+    steps:
+    - intent: perform_mathematical_operation
+    - action: math_operation_form
+    - active_loop: math_operation_form
+  - rule: restart conversation
+    steps:
+    - intent: restart
+    - action: action_restart

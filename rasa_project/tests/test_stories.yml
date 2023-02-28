@@ -1,0 +1,33 @@
+#### This file contains tests to evaluate that your bot behaves as expected.
+#### If you want to learn more, please see the docs: https://rasa.com/docs/rasa/testing-your-assistant
+
+## happy path
+* greet
+  - utter_greet
+* choose_operation{"operation": "add"}
+  - utter_ask_first_operand
+* provide_operand{"operand": "4"}
+  - utter_ask_second_operand
+* provide_operand{"operand": "5"}
+  - action_calculate
+  - utter_result
+* affirm
+  - action_start_over
+  - utter_choose_operation
+
+## division by 0
+* greet
+  - utter_greet
+* choose_operation{"operation": "division"}
+  - utter_ask_first_operand
+* provide_operand{"operand": "5"}
+  - utter_ask_second_operand
+* provide_operand{"operand": "0"}
+  - utter_zero_division_error
+  - utter_ask_second_operand
+* provide_operand{"operand": "2"}
+  - action_calculate
+  - utter_result
+* affirm
+  - action_start_over
+  - utter_choose_operation

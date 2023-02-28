@@ -1,0 +1,67 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - math_operations
+  - more_operations
+  - inform
+
+entities:
+  - operand_1
+  - operand_2
+  - operation
+
+slots:
+  operand_1:
+    type: unfeaturized
+  operand_2:
+    type: unfeaturized
+  operation:
+    type: unfeaturized
+
+responses:
+  utter_greet:
+    - text: "Hello! How can I help you with math operations?"
+  utter_goodbye:
+    - text: "Goodbye!"
+  utter_ask_operand_1:
+    - text: "What is the first operand?"
+  utter_ask_operand_2:
+    - text: "What is the second operand?"
+  utter_ask_operation:
+    - text: "What mathematical operation do you want to do?"
+  utter_math_result:
+    - text: "The result of {operation} of {operand_1} and {operand_2} is {result}."
+  utter_more_operations:
+    - text: "Do you want to perform another mathematical operation?"
+
+actions:
+  - utter_greet
+  - utter_goodbye
+  - utter_ask_operand_1
+  - utter_ask_operand_2
+  - utter_ask_operation
+  - utter_math_result
+  - utter_more_operations
+  - action_math_operations
+  - action_more_operations
+
+forms:
+  math_form:
+    required_slots:
+      operand_1:
+        - type: from_entity
+          entity: operand_1
+          intent: math_operations
+      operand_2:
+        - type: from_entity
+          entity: operand_2
+          intent: math_operations
+      operation:
+        - type: from_entity
+          entity: operation
+          intent: math_operations
+
